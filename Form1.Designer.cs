@@ -88,6 +88,9 @@
             // lb_filesToMove
             // 
             this.lb_filesToMove.AllowDrop = true;
+            this.lb_filesToMove.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_filesToMove.FormattingEnabled = true;
             this.lb_filesToMove.Location = new System.Drawing.Point(160, 48);
             this.lb_filesToMove.Name = "lb_filesToMove";
@@ -96,6 +99,7 @@
             // 
             // link_checkAll
             // 
+            this.link_checkAll.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.link_checkAll.AutoSize = true;
             this.link_checkAll.Location = new System.Drawing.Point(88, 414);
             this.link_checkAll.Name = "link_checkAll";
