@@ -108,23 +108,23 @@ namespace SeriesManager
 
         private void btn_check_Click(object sender, EventArgs e)
         {
-            DirectoryInfo dinfo = new DirectoryInfo(@"D:\Downloads");
-            FileInfo[] Files = dinfo.GetFiles("*.txt");//@todo entension + mettre dans calsse info ?
-
+            lb_filesToMove.Items.Clear();
+            var files = Directory.EnumerateFiles(informations.source, "*.*", SearchOption.AllDirectories)
+                .Where(s => s.EndsWith(".txt") || s.EndsWith(".mdr"));//avi mp4 mkv
 
             List<string> Series = informations.listSeries;
             List<string> Mangas = informations.listMangas;
 
             string serieName;
-            foreach (FileInfo file in Files)
+            foreach (string file in files)
             {
-                serieName = file.Name.Replace('.', ' ').ToLower();
+                serieName = file.Replace('.', ' ').ToLower();
 
                 foreach (string Serie in Series)
                 {
                     if (serieName.Contains(Serie))
                     {
-                        lb_filesToMove.Items.Add(file.Name);
+                        lb_filesToMove.Items.Add(file);
                     }
                 }
              }
@@ -140,9 +140,6 @@ namespace SeriesManager
             {
                 System.Text.RegularExpressions.Regex myRegex = new Regex(@"^(.*)S(?<saison>[\d]{2})E(?<episode>[\d]{2})(.*)$");
                 GroupCollection groups = myRegex.Match(itemChecked.ToString()).Groups;
-                //Debug.WriteLine(groups["saison"]);
-                //Debug.WriteLine(groups["episode"]);
-
                 foreach (string Serie in Series)
                 {
                     serieName = itemChecked.ToString().Replace('.', ' ').ToLower();
