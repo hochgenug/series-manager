@@ -150,6 +150,11 @@ namespace SeriesManager
             List<string> Mangas = informations.listMangas;
             string serieName;
 
+            this.progressBar.Minimum = 1;
+            this.progressBar.Maximum = lb_filesToMove.CheckedItems.Count + 1;
+            this.progressBar.Value = 1;
+            this.progressBar.Step = 1;
+
             foreach (object itemChecked in lb_filesToMove.CheckedItems)
             {
                 System.Text.RegularExpressions.Regex myRegex = new Regex(@"^(.*)S(?<saison>[\d]{2})E(?<episode>[\d]{2})(.*)$");
@@ -178,9 +183,8 @@ namespace SeriesManager
 
                         to += UppercaseFirst(name) + ext;
 
-                        Debug.WriteLine(from);
-                        Debug.WriteLine(to);
                         File.Move(from, to);
+                        this.progressBar.PerformStep();
                     }
                 }
             }

@@ -35,6 +35,7 @@
             this.btn_move = new System.Windows.Forms.Button();
             this.lb_filesToMove = new System.Windows.Forms.CheckedListBox();
             this.link_checkAll = new System.Windows.Forms.LinkLabel();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,12 +77,13 @@
             // 
             // lb_filesToMove
             // 
-            this.lb_filesToMove.AllowDrop = true;
             this.lb_filesToMove.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lb_filesToMove.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.lb_filesToMove.CheckOnClick = true;
             this.lb_filesToMove.FormattingEnabled = true;
+            this.lb_filesToMove.HorizontalScrollbar = true;
             this.lb_filesToMove.Location = new System.Drawing.Point(160, 48);
             this.lb_filesToMove.Name = "lb_filesToMove";
             this.lb_filesToMove.Size = new System.Drawing.Size(517, 379);
@@ -99,12 +101,20 @@
             this.link_checkAll.Text = "Check All";
             this.link_checkAll.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.link_checkAll_LinkClicked);
             // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(5, 154);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(149, 23);
+            this.progressBar.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(691, 437);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.link_checkAll);
             this.Controls.Add(this.lb_filesToMove);
             this.Controls.Add(this.btn_move);
@@ -128,6 +138,7 @@
         private System.Windows.Forms.Button btn_move;
         private System.Windows.Forms.CheckedListBox lb_filesToMove;
         private System.Windows.Forms.LinkLabel link_checkAll;
+        private System.Windows.Forms.ProgressBar progressBar;
     }
 }
 
