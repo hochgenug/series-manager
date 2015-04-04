@@ -145,12 +145,27 @@ namespace SeriesManager
                     serieName = itemChecked.ToString().Replace('.', ' ').ToLower();
                     if (serieName.Contains(Serie))
                     {
-                        string from = informations.source + "\\" + itemChecked.ToString();
-                        string to = informations.seriePath + "\\" + Serie + "\\" + groups["saison"] + "\\" + Serie + "S" + groups["saison"] + "E" + groups["episode"];
+                        string from = itemChecked.ToString();
+                        string name = Serie;
+                        string ext = Path.GetExtension(from);
+
+                        string to = informations.seriePath + "\\" + Serie + "\\";
+                        if (groups["saison"].ToString() != "")
+                        {
+                            to += "S" + groups["saison"].ToString().TrimStart('0') + "\\";
+                            name += " S" + groups["saison"];
+
+                            if (Directory.Exists(to) == false)
+                            {
+                                DirectoryInfo di = Directory.CreateDirectory(to);
+                            }
+                        }
+                        name += "E" + groups["episode"];
+                        to += name + ext;
+
                         Debug.WriteLine(from);
                         Debug.WriteLine(to);
-                        //File.Move(from, to);
-                        //yolo
+                        File.Move(from, to);
                     }
                 }
             }
