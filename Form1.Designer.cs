@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_check = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.defaultSource = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.label_DefaultDownload = new System.Windows.Forms.Label();
@@ -37,17 +37,6 @@
             this.link_checkAll = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btn_check
-            // 
-            this.btn_check.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_check.Location = new System.Drawing.Point(5, 118);
-            this.btn_check.Name = "btn_check";
-            this.btn_check.Size = new System.Drawing.Size(136, 38);
-            this.btn_check.TabIndex = 0;
-            this.btn_check.Text = "Check";
-            this.btn_check.UseVisualStyleBackColor = false;
-            this.btn_check.Click += new System.EventHandler(this.btn_check_Click);
             // 
             // defaultSource
             // 
@@ -58,7 +47,7 @@
             this.defaultSource.TabIndex = 1;
             this.defaultSource.Text = "Change it !";
             this.defaultSource.UseVisualStyleBackColor = false;
-            this.defaultSource.Click += new System.EventHandler(this.btnSource_Click);
+            this.defaultSource.Click += new System.EventHandler(this.btn_source_Click);
             // 
             // fileSystemWatcher1
             // 
@@ -77,7 +66,7 @@
             // btn_move
             // 
             this.btn_move.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_move.Location = new System.Drawing.Point(5, 181);
+            this.btn_move.Location = new System.Drawing.Point(5, 110);
             this.btn_move.Name = "btn_move";
             this.btn_move.Size = new System.Drawing.Size(135, 38);
             this.btn_move.TabIndex = 4;
@@ -91,6 +80,7 @@
             this.lb_filesToMove.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lb_filesToMove.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.lb_filesToMove.FormattingEnabled = true;
             this.lb_filesToMove.Location = new System.Drawing.Point(160, 48);
             this.lb_filesToMove.Name = "lb_filesToMove";
@@ -113,13 +103,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(691, 437);
             this.Controls.Add(this.link_checkAll);
             this.Controls.Add(this.lb_filesToMove);
             this.Controls.Add(this.btn_move);
             this.Controls.Add(this.label_DefaultDownload);
             this.Controls.Add(this.defaultSource);
-            this.Controls.Add(this.btn_check);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Download Manager";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -131,7 +122,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_check;
         private System.Windows.Forms.Button defaultSource;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
         private System.Windows.Forms.Label label_DefaultDownload;
