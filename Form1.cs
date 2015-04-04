@@ -13,24 +13,8 @@ using System.Text.RegularExpressions;
 
 namespace SeriesManager
 {
-
-
-    public partial class Form1 : Form
+    partial class Form1 : Form
     {
-        infos informations = new infos();
-       
-
-        public Form1()
-        {
-            InitializeComponent();
-            this.label_DefaultDownload.Text = this.label_DefaultDownload.Text + this.informations.source;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         public class infos
         {
             private string _source;
@@ -57,8 +41,6 @@ namespace SeriesManager
                 {
                     this.listMangas.Add(manga.Replace(this._mangaPath + "\\", "").ToLower());
                 }
-                
-           
             }
 
             public string source
@@ -85,7 +67,6 @@ namespace SeriesManager
                 set { _listSeries = value; }
             }
 
-
             public List<string> listMangas
             {
                 get { return _listMangas; }
@@ -93,10 +74,30 @@ namespace SeriesManager
             }
         }
 
-        private void btnSource_Click(object sender, EventArgs e)
+        infos informations = new infos();
+
+        public Form1()
+        {
+            InitializeComponent();
+            this.label_DefaultDownload.Text = this.label_DefaultDownload.Text + this.informations.source;
+            this.reloadList();
+        }
+
+        private void Form1_Load(object sender, EventArgs e){}
+
+        static string UppercaseFirst(string s)
+        {
+            if (string.IsNullOrEmpty(s))
+            {
+                return string.Empty;
+            }
+            return char.ToUpper(s[0]) + s.Substring(1);
+        }
+
+        private void btn_source_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.SelectedPath = "D:\\Downloads";
+            fbd.SelectedPath = informations.source;
             fbd.Description = "Merci de choisir un new folder :)";
 
             if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -104,13 +105,20 @@ namespace SeriesManager
                 informations.source = fbd.SelectedPath;
                 label_DefaultDownload.Text = "Current download folder : " + informations.source;
             }
+            this.reloadList();
+        }
+        
+        private void btn_move_Click(object sender, EventArgs e)
+        {
+            this.moveFiles();
+            this.reloadList();
         }
 
-        private void btn_check_Click(object sender, EventArgs e)
+        private void reloadList()
         {
             lb_filesToMove.Items.Clear();
             var files = Directory.EnumerateFiles(informations.source, "*.*", SearchOption.AllDirectories)
-                .Where(s => s.EndsWith(".txt") || s.EndsWith(".mdr"));//avi mp4 mkv
+                .Where(s => s.EndsWith(".avi") || s.EndsWith(".mp4") || s.EndsWith(".mkv"));
 
             List<string> Series = informations.listSeries;
             List<string> Mangas = informations.listMangas;
@@ -127,10 +135,16 @@ namespace SeriesManager
                         lb_filesToMove.Items.Add(file);
                     }
                 }
-             }
+            }
         }
 
-        private void btn_move_Click(object sender, EventArgs e)
+        private void link_checkAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            for (int i = 0; i < lb_filesToMove.Items.Count; i++)
+                lb_filesToMove.SetItemChecked(i, true); ;
+        }
+
+        private void moveFiles()
         {
             List<string> Series = informations.listSeries;
             List<string> Mangas = informations.listMangas;
@@ -161,7 +175,8 @@ namespace SeriesManager
                             }
                         }
                         name += "E" + groups["episode"];
-                        to += name + ext;
+
+                        to += UppercaseFirst(name) + ext;
 
                         Debug.WriteLine(from);
                         Debug.WriteLine(to);
@@ -170,12 +185,5 @@ namespace SeriesManager
                 }
             }
         }
-
-        private void link_checkAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            for (int i = 0; i < lb_filesToMove.Items.Count; i++)
-                lb_filesToMove.SetItemChecked(i, true); ;
-        }
-
     }
 }
