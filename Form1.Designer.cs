@@ -36,6 +36,7 @@
             this.lb_filesToMove = new System.Windows.Forms.CheckedListBox();
             this.link_checkAll = new System.Windows.Forms.LinkLabel();
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.label_checklist = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,12 +109,25 @@
             this.progressBar.Size = new System.Drawing.Size(149, 23);
             this.progressBar.TabIndex = 7;
             // 
+            // label_checklist
+            // 
+            this.label_checklist.AutoSize = true;
+            this.label_checklist.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.label_checklist.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_checklist.Location = new System.Drawing.Point(347, 59);
+            this.label_checklist.Name = "label_checklist";
+            this.label_checklist.Size = new System.Drawing.Size(130, 20);
+            this.label_checklist.TabIndex = 8;
+            this.label_checklist.Text = "All is ordered :)";
+            this.label_checklist.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(691, 437);
+            this.Controls.Add(this.label_checklist);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.link_checkAll);
             this.Controls.Add(this.lb_filesToMove);
@@ -139,6 +153,7 @@
         private System.Windows.Forms.CheckedListBox lb_filesToMove;
         private System.Windows.Forms.LinkLabel link_checkAll;
         private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label label_checklist;
     }
 }
 

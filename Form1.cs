@@ -136,6 +136,15 @@ namespace SeriesManager
                     }
                 }
             }
+
+            if (lb_filesToMove.Items.Count == 0)
+            {
+                this.label_checklist.Show();
+            }
+            else
+            {
+                this.label_checklist.Hide();
+            }
         }
 
         private void link_checkAll_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
