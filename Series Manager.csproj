@@ -102,7 +102,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Series.json" />
     <None Include="Series.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Series.Designer.cs</LastGenOutput>
