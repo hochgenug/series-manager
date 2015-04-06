@@ -16,10 +16,26 @@ namespace SeriesManager
 
         public Betaserie()
         {
-           getSerieEpisodes(10627);
+            // IEnumerable<dynamic> test = getSerieEpisodes(getSeriesId("The Walking Dead"));
+            getEpisodeName("The Walking Dead", "2", "3");
 
-           //getSerieEpisodes(getSeriesId("The Waling Dead"));
         }
+
+        private string getEpisodeName(string serieName, string season, string episode){
+            string episodeName = "";
+            IEnumerable<dynamic> episodesList = getSerieEpisodes(getSeriesId(serieName));
+            foreach (var item in episodesList)
+            {
+                if (item.season == season && item.episode == episode)
+                {
+                    episodeName = item.title;
+                }
+            }
+
+            Console.WriteLine(episodeName);
+            return episodeName;
+        }
+
 
         private string jsonResponse(int id)
         {
@@ -47,21 +63,34 @@ namespace SeriesManager
                 episode = (string)ep["episode"]
             };
 
-            /*foreach (var item in episodes)
-            {
-                Console.WriteLine(item.title);
-            }*/
-
             return episodes;
         }
 
         private int getSeriesId(string name)
         {
+            int serieId = 0;
+            StreamReader r = new StreamReader("c:\\series.json");// TODO
+            string json = r.ReadToEnd();
+            JObject seriesList = JObject.Parse(json);
 
-            string SeriesList = SeriesManager.Series.Default.SeriesList;
-            //TODO
+           var series =
+           from se in seriesList["shows"]
+           select new
+           {
+               title = (string)se["title"],
+               id = (int)se["id"]
+           };
 
-            return 10627;
+           foreach (var item in series)
+            {
+                 if (item.title == name)
+                 {
+                     serieId = item.id;
+                     break;
+                 }
+             }
+
+           return serieId;
         }
 
     }
